@@ -1,39 +1,40 @@
 \chapter{Introdução}
-
+% *********
+% Motivação
+% *********
 \section{Motivação}
-
 A demanda por soluções tecnológicas na área da saúde vem crescendo a nível global, com os  \textit{smartphones} ganhando destaque entre as ferramentas utilizadas \todo{citar mhealth-who}. O termo \textit{mHealth} (do inglês, \textit{mobile health}) é utilizado para o estudo da prática da medicina e saúde pública através do uso da tecnologia móvel (\textit{mobile} em inglês). Diversos tipos de segmentos da área da saúde, como assistência médica, nutrição, gestão de estilo de vida e bem-estar compõem um mercado de aplicações de \textit{mHealth} que já ultrapassa o valor de mercado de $25$ bilhões de dólares anuais, com mais de $325.000$ aplicativos disponíveis, somando um total de $3.6$ bilhões de downloads nas lojas virtuais (estimativa de 2017).\todo{citar mhealth-economics}
 
-O segmento da área da saúde que mais se destaca no uso de tecnologias móveis, obtendo o maior número de assinaturas de usuários e receita total\todo{citar mhealth-market}, é o de atividades físicas (\textit{fitness} em inglês). Tendo em vista este fator, a Jungle Devs, empresa onde foi realizado este trabalho de PFC, foi contratada por um cliente da Austrália para desenvolver um aplicativo móvel envolvendo problemas dentro deste segmento. A ideia do projeto é desenvolver aplicativos para as plataformas \textit{iOS} e \textit{Android} que facilitem a conexão entre academias de musculação e treinadores pessoais profissionais, permitindo que aquelas sejam locadas por estes.
+O segmento da área da saúde que mais se destaca no uso de tecnologias móveis, obtendo o maior número de assinaturas de usuários e receita total\todo{citar mhealth-market}, é o de atividades físicas (\textit{fitness} em inglês). Tendo em vista este fator, a Jungle Devs, empresa onde foi realizado este trabalho de PFC, foi contratada por um cliente da Austrália para desenvolver um aplicativo móvel envolvendo problemas dentro deste segmento. Em linhas gerais, o projeto tem o objetivo de desenvolver aplicativos para as plataformas \textit{iOS} e \textit{Android} que facilitem a conexão entre academias de musculação e treinadores pessoais profissionais, permitindo que aquelas sejam locadas por estes.
 
-O uso da tecnologia móvel de forma semelhante ao proposto - através de uma abordagem de economia colaborativa (\textit{sharing economy} em inglês) - já obteve sucesso em outros campos de atuação \todo{citar sharing-economy}. Exemplos como \textit{Airbnb}, no ramo imobiliário, e \textit{Uber}, no setor de transportes, mostram como indivíduos e grupos podem se beneficiar com o uso de recursos subutilizados, oferecendo os mesmos na forma de serviço. Oportunidades para usufruir deste benefício da economia colaborativa foram detectadas na proposta do aplicativo estudado neste PFC, a exemplo de academias e locais com infraestrutura disponível para musculação (hotéis, condomínios, entre outros) que poderiam otimizar o uso de seus espaços e recursos, tendo em vista a demanda existente da população por exercícios físico.
+Este trabalho de PFC propõem o desenvolvimento do aplicativo para o sistema \textit{iOS}. Uma versão piloto foi desenvolvida para validar a ideia de negócio proposta para o setor de atividades físicas. O aplicativo tem a função de expor as funcionalidades de negócio para os usuários através de uma interface gráfica. O mesmo também exerce a responsabilidade de integrador dos sistemas que compõe os requisitos da aplicação (sistemas de envio de SMS, geolocalização e pagamento), realizando também a integração com o back-end, que contém as regras de negócio e interage com o banco de dados remoto.
 
-Em face ao cenário apresentado, a construção do aplicativo adotou a abordagem de desenvolvimento ágil (\textit{agile} em inglês), com o uso de técnicas como o \textit{Scrum} para assegurar a rápida prototipação da solução, permitindo a iteração de desenvolvimento frequente baseada no \textit{feedback} do cliente de forma que o aplicativo atenda as necessidades reais dos usuários. Além de selecionar e fazer uso de ferramentas de programação modernas 
+Além do desenvolvimento do aplicativo, este PFC contempla um estudo preliminar dos processos de implementação de testes automatizados dentro da Jungle Devs. A dedicação de esforços voltados ao setor de testes automatizados é uma tendência observada nas empresas de tecnologia modernas. A nível global, cerca de $56\%$ das empresas de tecnologia já estão fazendo tantos ou mais testes automatizados em relação à quantidade de testes manuais \todo{citar tests-trends}. 
 
-\section{Objetivos}-
+% *********
+% Objetivos
+% *********
+\section{Objetivos}
+Os objetivos gerais deste PFC foram o desenvolvimento de um aplicativo para o sistema \textit{iOS} e a realização de estudo preliminar da implementação de testes automatizados dentro da empresa. 
 
-- Desenvolvimento do aplicativo iOS
-    - Interface gráfica
-    - Integração com sistemas
-    
-- Estudo, pesquisa e implementação de testes automatizados de interface 
-    - Pesquisa de ferramentas
-    - Experimentos
-    - Estudo de viabilidade
+O desenvolvimento do aplicativo visa a fase piloto da aplicação que conecta academias de musculação e treinadores. Neste trabalho é apresentado: a metodologia de desenvolvimento do software, a arquitetura de software, a escolha das tecnologias utilizadas, as etapas de desenvolvimento da interface gráfica e de integração de sistemas. 
 
+O estudo dos testes automatizados tem o foco nos testes voltados à interface gráfica, apresentando um comparativo de uso de ferramentas específicas para a tarefa e uma análise do cenário para a adoção de testes dentro da empresa.
+
+% *********
+% Estrutura
+% *********
 \section{Estrutura do Documento}
+Este trabalho está estruturado da seguinte forma: 
 
-\todo{explicar estrutura do doc}
-Este trabalho está dividido da seguinte forma: 
+No capítulo 2, é apresentado o contexto em que o projeto está inserido. A empresa em que este trabalho foi realizado é detalhada, assim como o cenário de uso da aplicação.
 
-No capítulo 2, a contextualização
+No capítulo 3, os conceitos básicos utilizados para a formalização do projeto são expostos. A teoria da metodologia de desenvolvimento de software utilizada no projeto é apresentada, juntamente com a explicação do funcionamento do ambiente de desenvolvimento de aplicativos para o sistema \textit{iOS}, bem como os conceitos técnicos de programação utilizados ao longo do projeto e a teoria na área de testes automatizados.
 
-No capítulo 3, os conceitos básicos
+No capítulo 4, é apresentado o aplicativo da perspectiva do usuário, abordando detalhes pontuais do desenvolvimento quando necessário.
 
-No capítulo 4, a descrição conceitual
+No capítulo 5, são apresentadas as etapas de implementação do aplicativo. Neste capítulo são descritas a metodologia de desenvolvimento, a arquitetura de software, a implementação da interface gráfica, a integração de sistemas e a implementação dos testes automatizados.
 
-No capítulo 5, o desenvolvimento
+No capítulo 6, são apresentados os resultados do desenvolvimento do aplicativo e do estudo da implementação dos testes automatizados. Uma análise do estado final da aplicação é feita, com a descrição do piloto do aplicativo. Também é apresentado um comparativo entre as ferramentas de automatização de testes de interface gráfica utilizadas, bem como uma análise crítica do cenário de uso das mesmas dentro da empresa.
 
-No capítulo 6, os resultados
-
-E por fim, no capítulo 7, as conclusoes 
+Por fim, no capítulo 7, conclusões e perspectivas sobre o trabalho são levantadas.
