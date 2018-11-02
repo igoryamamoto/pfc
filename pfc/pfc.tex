@@ -43,7 +43,7 @@
 % Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
 % ---
 % \usepackage{lipsum}				% para geração de dummy text
-% \usepackage{todonotes}
+\usepackage{todonotes}
 
 % ---
 % Pacotes de citações
@@ -118,7 +118,7 @@
 % INÍCIO DO DOCUMENTO
 % ----------------------------------------------------------
 \begin{document}
-
+\listoftodos
 %\selectlanguage{english}
 \selectlanguage{brazil}
 
@@ -150,7 +150,7 @@
 \cleardoublepage
 
 % inserir lista de siglas
-\include{siglas}
+\include{pre-textual/siglas}
 
 % inserir o sumario
 \pdfbookmark[0]{\contentsname}{toc}
