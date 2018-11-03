@@ -22,21 +22,21 @@ Este capítulo tem como objetivo apresentar alguns conceitos utilizados como bas
 % Scrum
 % *****
 \subsection{Scrum}
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{pfc/figuras/scrum.pdf}
     \caption{Estrutura do Scrum}
     \label{fig:scrum}
 \end{figure}
 
-\textit{Scrum} (Figura \ref{fig:scrum}) \todo{citar scrum-guide} é um framework com o propósito de abordar problemas adaptativos complexos, entregando produtos com o maior valor agregado possível de forma produtiva e criativa. O \textit{Scrum} tem sido usado para o gerenciamento de produtos desde o início dos anos 90. Ele não é um processo, técnica ou método definitivo, mas sim uma estrutura para empregar vários processos e técnicas. O \textit{Scrum} evidencia a eficácia relativa do gerenciamento de produtos e técnicas de trabalho para que o produto, a equipe e o ambiente de trabalho possam melhorar continuamente. O framework fundamenta-se nos conceitos de transparência, inspeção e adaptação e tem como valores: compromisso, coragem, foco, abertura e respeito.
+\textit{Scrum} (Figura \ref{fig:scrum}) \todo{citar scrum-guide} é um framework com o propósito de abordar problemas adaptativos complexos. Ele não é um processo, técnica ou método definitivo, mas sim uma estrutura para empregar vários processos e técnicas. O framework fundamenta-se nos conceitos de transparência, inspeção e adaptação e tem como valores: compromisso, coragem, foco, abertura e respeito.
 
-O framework do \textit{Scrum} consiste em times com atribuições associadas, eventos e artefatos. Estes elementos são elencados a seguir:
+O \textit{Scrum} consiste em times com atribuições associadas, eventos e artefatos. Estes elementos são elencados a seguir:
 \begin{itemize}
     \item Atribuições nos times:
     \begin{itemize}
         \item \textit{Product Owner}: responsável por maximizar o valor do produto resultante do trabalho do time de desenvolvimento. É uma única pessoal responsável por gerenciar o backlog do produto (\textit{Product Backlog}).
-        \item \textit{Development Team}: é o time de desenvolvimento. Consiste de um time de profissionais que realizam o trabalho de entregar um versão pronta de um incremento do produto. Os times de desenvolvimento devem ter seus respectivos trabalhos auto-geridos de tal forma a aumentar a eficiência e eficâcia do projeto.
+        \item \textit{Development Team}: é o time de desenvolvimento. Estes devem ter seus respectivos trabalhos auto-geridos de tal forma a aumentar a eficiência e eficacia do projeto.
         \item \textit{Scrum Master}: responsável por promover e dar apoio as regras do \textit{Scrum} dentro do time. Esta pessoa deve ajudar os demais a compreender a teoria por trás do framework, práticas, regras e valores.
     \end{itemize}
     \item Eventos:
@@ -54,7 +54,7 @@ O framework do \textit{Scrum} consiste em times com atribuições associadas, ev
     \end{itemize}
 \end{itemize}
 
-O projeto do Gyymi seguiu a seguinte estrutura de \textit{Scrum}: o \textit{product owner} e o \textit{scrum master} foram uma única pessoa, devido ao tamanho reduzido da equipe, não foi julgado necessário duas pessoas para tal atribuições. O time de desenvolvimento foi composto por um desenvolvedor back-end, um líder técnico iOS, um desenvolvedor iOS (função exercida pelo aluno deste PFC), um desenvolvedor Android e um designer. A \textit{sprint} teve durações de duas semanas, o \textit{daily scrum} foi executado todos os dias com duração máxima de quinze minutos e os eventos de \textit{sprint review}, \textit{sprint retrospective} e \textit{sprint planning} foram todos executados durante a mesma sessão para otimizar o tempo, visto que o projeto como versão piloto não necessitava de sessões específicas para cada evento.
+O projeto do Gyymi seguiu a seguinte estrutura de \textit{Scrum}: o \textit{product owner} e o \textit{scrum master} foram uma única pessoa, devido ao tamanho reduzido da equipe, não foi julgado necessário duas pessoas para tal atribuições. O time de desenvolvimento foi composto por um desenvolvedor back-end, um líder técnico iOS, um desenvolvedor iOS (função exercida pelo autor), um desenvolvedor Android e um designer. A \textit{sprint} teve durações de duas semanas, o \textit{daily scrum} foi executado todos os dias com duração máxima de quinze minutos e os eventos de \textit{sprint review}, \textit{sprint retrospective} e \textit{sprint planning} foram todos executados durante a mesma sessão para otimizar o tempo, visto que o projeto como versão piloto não necessitava de sessões específicas para cada evento.
 
 % *******************
 % Desenvolvimento iOS
@@ -84,8 +84,13 @@ O sistema operacional iOS gerencia o hardware do dispositivo e fornece as tecnol
 \subsection{Ambiente de Desenvolvimento Xcode}
 O Xcode é o ambiente de desenvolvimento integrado (IDE) da Apple. A ferramenta possui um editor de texto integrado, uma ferramenta de construção de interfaces (\textit{interface builder}) e outras funcionalidades que dão suporte ao desenvolvimento de aplicativos para os sistemas iOS, macOS, watchOS e tvOS. O Xcode possui o SDK iOS integrado, o qual permite a compilação, a simulação de dispositivos, entre outros recursos.
 
-A Figura \todo{referenciar figura do xcode} ilustra a interface gráfica da IDE.
-\missingfigure{figura Xcode}
+A Figura \ref{fig:xcode} ilustra a interface gráfica da IDE.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{pfc/figuras/xcode.png}
+    \caption{Interface gráfica da IDE Xcode}
+    \label{fig:xcode}
+\end{figure}
 
 \subsection{Linguagens de Programação}
 \begin{figure}[h]
@@ -161,6 +166,11 @@ RESTful APIs foram projetadas para se beneficiar de protocolos existentes, utili
     \item Possuem diferentes camadas operando em conjunto para a construção de uma hierarquia que auxilia a criação de aplicações mais escaláveis e modulaes.
     \item Não está restrita a um tipo de formato de transmissão de dados (pode transferir dados em diferentes formatos como XML e JSON). E usuários não necessitam conhecer nomes de procedimentos ou parâmetros em uma ordem específica.
 \end{itemize}
+
+% ********************
+% Back-end
+% ********************
+\section{Back-end}
 
 % ********************
 % Testes Automatizados
