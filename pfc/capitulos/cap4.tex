@@ -137,7 +137,7 @@ A configuração de perfil de treinador segue um fluxo de três telas (Figura \r
 % Interface academias
 % *******************
 \section{Interface para Academias}
-Nesta secção, é apresentada a interface de uso dos usuários que cadastraram um estabelecimento na plataforma. As principais funcionalidades implementadas para a versão piloto do aplicativo são abordadas: dashboard com dados semanais de uso da academia, calendário de sessões agendadas e configuração de agenda semanal para locação, perfil da academia.
+Nesta secção, é apresentada a interface para usuários que cadastraram um estabelecimento na plataforma. As principais funcionalidades implementadas para a versão piloto do aplicativo são abordadas: dashboard com dados semanais de uso da academia, calendário de sessões agendadas e configuração de agenda semanal para locação, perfil da academia.
 
 Na interface para as academias o usuário tem a opção de navegar por cinco telas principais, selecionadas a partir da barra de navegação na parte inferior do aplicativo (Figura \ref{fig:gym-tabbar}). Da esquerda para a direita, as opções de navegação são: dashboard da academia; treinadores com sessões agendadas (não implementado para o piloto); calendário de sessões agendadas; central de notificações (não implementado para o piloto); perfil do estabelecimento.
 
@@ -229,13 +229,136 @@ A tela de perfil da academia além de exibir todos os dados passados pelo usuár
 % Interface treinadores
 % *********************
 \section{Interface para Treinadores}
+Nesta secção, é apresentada a interface para usuários que se cadastram como treinadores. As principais funcionalidades implementadas para a versão piloto do aplicativo são abordadas: busca por academias, agendamento de sessões de treino, calendário de sessões agendadas e perfil de treinador.  
 
+Na interface para treinadores, o usuário tem a opção de navegar por cinco telas principais, selecionadas a partir da barra de navegação (Figura \ref{fig:tr-tabbar}) localizada na região inferior do aplicativo. Da esquerda para a direita, as opções da barra de navegação são: mapa de busca, academias favoritadas, acesso rápido à academias recentes, calendário de sessões agendadas e perfil de treinador.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics{pfc/figuras/tr-tabbar.png}
+    \caption{Barra de navegação da interface para treinadores}
+    \label{fig:tr-tabbar}
+\end{figure}
 
 \subsection{Busca por Academias}
+O aplicativo permite que treinadores realizem buscas por academias através de três fluxos diferentes. Todos os três caminhos direcionam o usuário para a tela de visualização de perfil da academia (Figura \ref{fig:tr-gym-profile-view}) para treinadores. A partir desta tela o usuário pode realizar o agendamento de sessões de treino, abordado na próxima sub-secção.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{pfc/figuras/tr-gym-profile-view.png}
+    \caption{Visão de treinador do perfil de academia}
+    \label{fig:tr-gym-profile-view}
+\end{figure}
+
+O primeiro método de busca é feito a partir da tela do mapa de busca, ilustrado na Figura \ref{fig:tr-home-map}. O mapa indica a localização de academias, cadastradas na plataforma, com uma marcação preta (gota de suor). Dentro destas é exibida a taxa cobrada pela academia no próximo bloco disponível (informação que o back-end pode retornar pela API passando-se o horário em que o usuário realizou a busca). O mapa é renderizado dinamicamente através de integração feita com o serviço de geolocalização da Google, que será abordado no próximo capítulo. Na parte superior da tela, uma entrada de texto pode ser utilizada para realizar filtros de busca. Ao usuário digitar o nome ou endereço do estabelecimento, opções relacionadas à filtragem são apresentadas na tela (Figura \ref{fig:tr-map-search}). Em seguida, ao selecionar uma das opções, o mapa move-se até o local da academia e apresenta as informações básicas da mesma (Figura \ref{fig:tr-map-selected}).
+
+\begin{figure}[H]
+	\centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-map.png}
+        \caption{Mapa de busca}
+        \label{fig:tr-home-map}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-map-search.png}
+        \caption{Filtro de busca}
+        \label{fig:tr-map-search}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-home-map.png}
+        \caption{Academia selecionada}
+        \label{fig:tr-map-selected}
+    \end{subfigure}
+    ~
+    \caption{Busca por academias através de mapa integrado}
+    \label{fig:tr-gym-search}
+\end{figure}
+
+O segundo método de seleção de academia é feito através da tela de favoritos (Figura \ref{fig:tr-favorite}). Academias podem ser favoritadas através da tela de perfil da mesma (Figura \ref{fig:tr-gym-profile-view}) à marcação do símbolo de coração. Por fim, academias podem ser acessadas a partir da tela de academias recentes (Figura \ref{fig:tr-recent}). Academias são consideradas recentes quando quando uma sessão na mesma foi agendada. A tela apresenta as duas academias com sessões agendadas mais recentemente, além de também apresentar academias favoritadas no formato de lista.
+
+\begin{figure}[H]
+	\centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-favorite.png}
+        \caption{Busca por favoritos}
+        \label{fig:tr-favorite}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-my-gyms.png}
+        \caption{Busca por recentes}
+        \label{fig:tr-recent}
+    \end{subfigure}
+    ~
+    \caption{Busca por academias favoritas e recentes}
+    \label{fig:tr-alternative-search}
+\end{figure}
 
 \subsection{Agendamento de Sessão}
+Após o usuário acessar o perfil de uma academia, o mesmo pode dar início ao processo de agendamento de uma sessão de treino. Blocos disponíveis da academia são apresentados na parte inferior do perfil (Figura \ref{fig:tr-gym-profile-timetable}). Um calendário pode ser utilizado para selecionar a data desejada. Ao clicar em um dos blocos disponíveis, o usuário pode ver quantas vagas restam para determinada faixa de horário. Ao clicar o botão "Book now", o processo de agendamento é iniciado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{pfc/figuras/tr-gym-profile-2.png}
+    \caption{Visão de treinador dos blocos disponíveis da academia}
+    \label{fig:tr-gym-profile-timetable}
+\end{figure}
+
+O primeiro passo do agendamento de uma sessão de treino é ilustrado na Figura \ref{fig:tr-new-booking}. O usuário deve informar os seguintes dados da sessão: nome da sessão, horário de início, duração da sessão, número de clientes que levará (limitado a quatro). Prosseguindo, uma tela exibe o total a ser pago (Figura \ref{fig:tr-booking-payment}). Ao confirmar, uma transação é emitida ao serviço de pagamento (os dados de cartão de crédito do usuário não são utilizados na versão piloto do aplicativo, uma transação simulada é realizada). Por fim, o usuário visualiza todas as informações da sessão em uma tela de confirmação do agendamento (Figura \ref{fig:tr-booking-confirmed}). Nesta tela, o usuário pode tomar duas ações: fazer outro agendamento (opção "Make another booking"), ação que direciona o aplicativo para tela de academias recentes; ou enviar um SMS para seu cliente (opção "SMS client"), ação que gera uma mensagem de texto padrão e abre o aplicativo no dispositivo do usuário responsável por enviar SMS.
+
+\begin{figure}[H]
+	\centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-new-booking.png}
+        \caption{Criação da sessão}
+        \label{fig:tr-new-booking}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-booking-payment.png}
+        \caption{Pagamento}
+        \label{fig:tr-booking-payment}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-booking-confirmed.png}
+        \caption{Confirmação}
+        \label{fig:tr-booking-confirmed}
+    \end{subfigure}
+    ~
+    \caption{Processo de agendamento de sessão de treino}
+    \label{fig:tr-booking}
+\end{figure}
 
 \subsection{Calendário de Sessões Agendadas}
+O usuário pode acessar as sessões agendadas pelo mesmo através da tela ilustrada na Figura \ref{fig:tr-calendar}. Nesta tela, um calendário na parte superior é apresentado, possibilitando a seleção de data. Abaixo, todas as sessões agendadas pelo treinador são exibidas. Cada sessão é representada por um card, contendo as informações passadas previamente no momento do agendamento. Através do card, o usuário pode tomar duas ações: visualizar o perfil da academia em que a sessão vai ocorrer ou cancelar a sessão.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{pfc/figuras/tr-calendar.png}
+    \caption{Calendário de sessões agendadas pelo treinador}
+    \label{fig:tr-calendar}
+\end{figure}
 
 \subsection{Perfil do Treinador}
+A tela de perfil do treinador (Figura \ref{fig:tr-profile-info}) exibe todos os dados, relacionados ao perfil, que o usuário cadastrou na plataforma. Ao clicar em "Edit", pode-se editar o perfil de treinador. Ao clicar no ícone localizado no canto superior direto da tela, o usuário é direcionado à tela de dashboard (Figura \ref{fig:tr-dashboard}). O dashboard do treinador contém as seguintes informações: gasto total com agendamentos, receita proveniente de clientes (dado não disponível na versão piloto do aplicativo), número total de agendamentos, clientes e horas de treino na semana corrente e passada.
+
+\begin{figure}[H]
+	\centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-profile.png}
+        \caption{Informações gerais}
+        \label{fig:tr-profile-info}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/tr-dashboard.png}
+        \caption{Dashboard}
+        \label{fig:tr-dashboard}
+    \end{subfigure}
+    ~
+    \caption{Perfil do treinador}
+    \label{fig:tr-profile}
+\end{figure}
