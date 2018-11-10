@@ -1,5 +1,110 @@
 \chapter{Implementação e Testes do Aplicativo} \label{cap:development}
-Neste capítulo, são apresentados os detalhes de implementação e testes do aplicativo. 
+Neste capítulo, são apresentados os detalhes de implementação e testes do aplicativo. Primeiramente a implementação do aplicativo iOS é detalhada. Em seguida, é abordada a integração de todos os sistemas de software que compõe a aplicação. Por último, as implementações de testes automatizados de interface gráfica são apresentadas. 
+
+\section{Aplicativo iOS}
+Nesta secção são apresentados os detalhes de cada camada da arquitetura do aplicativo iOS, com exemplos de implementação. Em seguida, são apresentados os critérios de avaliação das implementações. Por fim, são apresentados os desafios e dificuldades da implementação do aplicativo iOS.
+
+% *******
+% Modelos
+% *******
+\subsection{\textit{Model}: Representação local de dados}
+Os dados da aplicação são representados localmente no aplicativo iOS através de \textit{struct}'s, estrutura de dado da linguagem Swift. Uma \textit{struct} no Swift permite definir propriedades e armazenar valores, definir métodos e inicializadores, além de permitir a conformação com protocolos. Os dados apresentados no aplicativos são provenientes dos retornos das chamadas de API's e são armazenados, em sua maioria, de forma volátil no aplicativo, na memória do dispositivo. Apenas alguns dados são persistidos no dispositivo: os dados do modelo de usuário e academia são mantidos para acesso rápido; o \textit{token} de autenticação do usuário também é mantido no dispositivo para que o mesmo possa manter sua sessão atual ativa, mesmo após fechar o aplicativo.
+
+
+A Figura \ref{fig:user-model} exemplifica a representação de dados no aplicativo através do modelo de usuário. A \textit{struct} contém as propriedades relacionadas ao usuário, com os respectivos tipos de dados associados. O protocolo \textit{Codable} é utilizado para permitir a tradução automática de dados da API, convertendo-os em uma instância da \textit{struct}. O modelo de usuário contém ainda uma variável computada ("fullName"), ou seja, calculada a partir de propriedades armazenadas.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/user-model.png}
+    \caption{Exemplo de modelo local de dados no aplicativo iOS}
+    \label{fig:user-model}
+\end{figure}
+
+% **********
+% Controller
+% **********
+\subsection{\textit{Controller}: Lógica e Tratamento de Ações}
+A camada que controla a parte lógica do aplicativo e o tratamento de ações (em resposta à interações com o usuário) foi implementada com \textit{UIViewControllers}, classe base para controladores fornecida pelo framework UIKit. Os controladores foram separados em classes que tratam, em linhas gerais, da lógica de uma tela específica do aplicativo. Assim, os mesmos são responsáveis por definir o comportamento das telas em cada etapa de seu ciclo de vida, além de responder às interações associadas a elementos da interface em questão. Também realizam a chamada de métodos da camada de redes do aplicativo, em que chamadas de API's são feitas, e atualizam a interface gráfica com os dados recebidos.
+
+A Figura \ref{fig:controller-example} contém um trecho de código de um exemplo de controlador. O exemplo implementa o controlador responsável pela lógica do dashboard de treinadores. No trecho de código é possível visualizar a propriedade "dashboard", que quando sobrescrita, chama um método para atualizar os dados da interface gráfica ("setupDashboardData()"). Também é possível ver o controle do comportamento da tela nas etapas de ciclo de vida em que: teve seus elementos de interface carregados ("viewDidLoad()") e está prestes a ser renderizada ("viewWillAppear()"). Nestas etapas, são chamados diversos métodos que controlam o comportamento da tela, como configuração de aspectos de aparência ("setupView()"), atualização de textos de acordo com a localização do dispositivo ("setupLocalizables()"), entre outros.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/ex-tr-dashboard.png}
+    \caption{Exemplo de implementação de controladores no aplicativo iOS}
+    \label{fig:controller-example}
+\end{figure}
+
+% *****************
+% Interface Gráfica
+% *****************
+\subsection{\textit{View}: Interface Gráfica}
+A implementação das interfaces gráficas do aplicativo foi feita principalmente com o uso de \textit{Storyboard}'s, ferramenta gráfica de construção de interfaces do Xcode. A Figura \ref{fig:storyboard} ilustra o uso de um \textit{Storyboard} para a construção da tela de entrada do aplicativo. Na parte esquerda da figura, é apresentada a hierarquia dos componentes da interface. Na região central, os elementos são dispostos na tela de acordo com o dispositivo selecionado. Na direita, encontram-se especificações de restrições de layout impostas ao componente da interface selecionado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/storyboard.png}
+    \caption{Uso de \textit{Storyboard}'s para implementação de interface gráfica}
+    \label{fig:storyboard}
+\end{figure}
+
+\section{Critérios de Avaliação}
+A implementação do aplicativo foi avaliada seguindo critérios técnicos para garantir a qualidade do produto e a conformidade com os requisitos do projeto. Alguns destes critérios e práticas adotadas para atendê-los são discutidos a seguir.
+
+Em relação ao código, algumas abordagens foram estabelecidas para mantê-lo limpo, em conjunto com as boas práticas de programação. Foi utilizado a ferramenta \textit{SwiftLint} \todo{referenciar swiftlint} para assegurar a padronização de estilo e a conformidade com convenções estabelecidas para a escrita na linguagem Swift. Sempre que o código é compilado, avisos são gerados na IDE caso algum desvio de padrão seja encontrado no código. Boas práticas de programação também foram utilizadas para avaliar a qualidade do código, como a divisão de responsabilidades e reuso de componentes.
+
+A avaliação da interface gráfica foi feita com base em testes de múltiplos dispositivos. Através da SDK iOS integrada ao Xcode, foi possível realizar a simulação do aplicativo em diferentes dispositivos. O critério utilizado para a aprovação de uma interface gráfica foi a avaliação positiva (conformidade com o projeto de design da aplicação e ausência de comportamentos gráficos estranhos) em pelo menos dois tipos de dispositivos de diferentes tamanhos de telas. A Figura \ref{fig:devices} ilustra o teste feito para a tela de dashboard das academias nos simuladores do iPhone SE, iPhone 7 e iPhone X.
+
+\begin{figure}[H]
+	\centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/se.png}
+        \caption{Simulador iPhone SE}
+        \label{fig:se}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/7.png}
+        \caption{Simulador iPhone 7}
+        \label{fig:7}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/x.png}
+        \caption{Simulador iPhone X}
+        \label{fig:x}
+    \end{subfigure}
+    ~
+    \caption{Uso de diferentes tipos de dispositivos}
+    \label{fig:devices}
+\end{figure}
+
+\section{Desafios e Dificuldades de Implementação}
+O desenvolvimento do aplicativo iOS apresentou alguns desafios de implementação, tanto lógicos como de interface gráfica. Alguns exemplos são apresentados a seguir.
+
+Um dos desafios de implementação da interface gráfica do aplicativo foram as tabelas de horários e calendários (Figuras \ref{fig:gym-block}, \ref{fig:gym-booking-calendar}). A solução encontrada foi a utilização das bibliotecas \textit{SpreadsheetView} e \textit{FSCalendar} \todo{citar essas bibliotecas}, que forneceram componentes customizáveis para auxiliar o desenvolvimento.
+
+Uma dificuldade recorrente em muitas das telas do aplicativo foi a adaptação dos elementos gráficos a diferentes tamanhos de dispositivos, principalmente aos menores aparelhos, como o iPhone SE. Essa dificuldade surgiu devido ao fato do design do projeto ter sido baseado em dispositivos maiores. Uma das soluções para alguns casos foi diferenciar o comportamento da tela baseado no tamanho do dispositivo, classificado como pequeno ou grande através de um método de auxílio.
+
+Em relação à parte lógica do aplicativo, o tratamento de erros apresentou alguns desafios de implementação. Muitos casos de erros e validação de campos tiveram que ser tratados no momento do cadastro dos usuários (Figura \ref{fig:register-errors}). Um exemplo de solução implementada para a validação de campos foi a utilização de expressões regulares. Erros advindos de falhas nas chamadas de API's também demandaram tempo de projeto, como a falha de autenticação de usuário ilustrada na Figura \ref{fig:session-expired}, que ocorre quando o \textit{token} do usuário é inválido. Neste último caso, a solução implementada foi apresentar um aviso explicando o problema e, em seguida, forçar o logout no aplicativo.
+
+\begin{figure}[H]
+	\centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/register-errors.png}
+        \caption{Erros no cadastro}
+        \label{fig:register-errors}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/session-expired.png}
+        \caption{Erro de autenticação}
+        \label{fig:session-expired}
+    \end{subfigure}
+    ~
+    \caption{Exemplos de estados de erro no aplicativo}
+    \label{fig:error-states}
+\end{figure}
 
 % **********************
 % Integração de Sistemas
@@ -18,7 +123,7 @@ A API contém algumas características relacionadas à segurança do sistema. A 
 
 No código do aplicativo, as chamadas de API são feitas com o auxílio de uma biblioteca para a linguagem Swift. A biblioteca, denominada Alamofire \todo{ref alamofire}, é uma camada de abstração para a utilização de recursos de rede do sistema iOS.
 
-O recebimento dos dados da API é feita a partir de uma tradução automática do formato JSON para objetos do Swift. Através do recurso denominado \textit{Codable} da linguagem e da configuração de parâmetros de transformação de dados. Primeiramente, são escolhidos os agentes de codificação e decodificação para atender o formato JSON. Em seguida é utilizado o parâmetro de configuração que transforma a notação \textit{snake case} da API para a notação \textit{camel case}, utilizada no código \todo{ref fig snake camel}.
+O recebimento dos dados da API é feita a partir de uma tradução automática do formato JSON para objetos do Swift. A tradução é feita através da utilização de recursos nativos do Swift. Além disso, é utilizado um parâmetro de configuração que transforma a notação \textit{snake case} da API para a notação \textit{camel case}, utilizada no código.
 
 \subsection{Serviços Externos}
 O desenvolvimento do aplicativo teve como requisito a implementação dos sistemas de geolocalização, pagamento e envio de SMS. No projeto, optou-se pela utilização destes sistemas na forma de serviços devido ao grande esforço envolvido na implementação e manutenção dos mesmos. Existem diversas alternativas consolidadas há anos no mercado para cada um dos sistemas citados. As soluções escolhidas e as integrações realizadas são apresentadas a seguir. 
@@ -115,40 +220,10 @@ A Figura \ref{fig:postman} ilustra a interface do Postman. Na esquerda, encontra
 
 \begin{figure}[H]
     \centering
-    \includegraphics[eidth=0.8\textwidth]{pfc/figuras/postman.png}
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/postman.png}
     \caption{Postman - ferramente utilizada para testes de RESTful API's}
     \label{fig:postman}
 \end{figure}
-
-% *****************
-% Interface Gráfica
-% *****************
-\section{Interface Gráfica}
-
-criterio de testes e avaliacao
-
-componentes reusaveis
-botao
-calendario
-stepper
-navbar
-
-tratamento de erros
-cadastro
-regex
-api
-
-bibliotecas
-image crop/resize
-googlemapas
-
-
-desafios/detalhes de implementação
-espaço entre campos e botao
-tamanhos de dispositivo
-tabelas de horario
-redirecionar insta/website
-bolinha calendario
 
 % ********************
 % Testes Automatizados
