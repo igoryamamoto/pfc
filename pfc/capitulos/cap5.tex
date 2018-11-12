@@ -1,4 +1,4 @@
-\chapter{Aspectos Conceituais e Arquiteturais do Projeto} \label{cap:architecture}
+\chapter{Metodologia de Desenvolvimento e Arquitetura} \label{cap:architecture}
 Neste capítulo são apresentados os conceitos, modelos e arquiteturas utilizadas no desenvolvimento do projeto. Primeiramente, é apresentada a metodologia de desenvolvimento de software utilizada no decorrer do trabalho. Em seguida os requisitos do sistema são expostos, com foco na versão piloto da aplicação. Após, é explicada a arquitetura global da aplicação, expondo todos os sistemas envolvidos, e também a arquitetura específica do aplicativo para a plataforma iOS. Por último, a modelagem de dados é apresentada.
 
 % ***********
@@ -24,17 +24,13 @@ O acompanhamento da execução das atividades, relacionadas ao desenvolvimento d
 % Arquitetura
 % ***********
 \section{Arquitetura da Aplicação}
-A arquitetura global da aplicação é ilustrada na Figura \todo{referenciar figura da arquitetura da aplicaçao}. O diagrama tem os principais sistemas de software representados pelas caixas e a comunicação entre os mesmos representada pelas setas. 
+A arquitetura global da aplicação é ilustrada na Figura \ref{fig:architecture}. O diagrama tem os principais sistemas de software representados pelas caixas e a comunicação entre os mesmos representada pelas setas. 
 
 O banco de dados é isolado em ambiente remoto, através do serviço da empresa Amazon, e é acessado diretamente apenas pelo back-end. Este é responsável por implementar a maior parte da lógica de negócio da aplicação, fornecendo respostas às requisições feitas pelo aplicativo iOS. O back-end se comunica com o serviço de envio de SMS para requisitar e validar códigos de verificação. Também se comunica com o serviço de pagamento para emitir pedidos de transação. O aplicativo iOS consiste no sistema que define como todas as interações com o usuário final ocorrem, além de ser o responsável por apresentar visualmente todo o conteúdo da aplicação. O aplicativo iOS se comunica com o serviço de geolocalização para a apresentação de mapas e se comunica com o serviço de pagamento para enviar dados de pagamento do usuário final, como números de cartão de crédito.
 
-\missingfigure{Diagrama da arquitetura}
-
-\subsection{Aplicativo iOS}
-O aplicativo iOS é o principal elemento de estudo deste PFC e onde o autor teve maiores contribuições para o projeto. A arquitetura de software do mesmo segue o padrão MVC
-
-\missingfigure{MVC}
-
-\section{Modelo de Dados}
-
-\missingfigure{Diagrama da modelagem de dados}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/system-architecture.png}
+    \caption{Arquitetura global dos sistemas envolvidos}
+    \label{fig:architecture}
+\end{figure}

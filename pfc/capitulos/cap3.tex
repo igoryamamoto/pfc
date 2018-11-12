@@ -112,46 +112,6 @@ O Swift traz diversos benefícios em relação ao Objective-C, a qual é conside
 \end{figure}
 O uso de gerenciadores de dependências, para controlar a utilização de bibliotecas externas no projeto, é um padrão para o desenvolvimento iOS. Uma das ferramentas mais frequêntes em projetos é o CocoaPods (Figura \ref{fig:cocoapods}), com mais de $53$ mil bibliotecas disponíveis e mais de $3$ milhões de aplicativos utilizando a ferramenta \todo{citar cocoapods}.
 
-% ***********************
-% Versionamento de Código
-% ***********************
-\section{Controle de Versão}
-Controle de versão trata-se de um sistema que mantém registro de mudanças em arquivos ao longo do tempo, de forma a permitir retorno a pontos anteriores da versão dos mesmos. Um sistema de controle de versão pode ser implementado das seguinte formas \todo{citar versionamento}:
-
-\begin{itemize}
-    \item Controle Local: arquivos são copiados para outros diretórios (Figura \ref{fig:version-control-local}), sendo mantida uma versão localmente.
-    \item Controle Centralizado: arquivos são mantidos em um servidor central (Figura \ref{fig:version-control-centralized}) e máquinas remotas tem a acesso as mesma versões.
-    \item Controle Distribuído: arquivos são mantidos em repositórios centrais e locais (Figura \ref{fig:version-control-distributed}), de maneira a todas as máquinas possuírem uma versão completa do repositório e de seu histórico de mudanças.
-\end{itemize}
-
-\begin{figure}[h]
-	\centering
-    \begin{subfigure}[b]{0.3\textwidth}
-      \includegraphics[width=\textwidth]{pfc/figuras/control-version-local.png}
-      \caption{Controle local}
-      \label{fig:version-control-local}
-    \end{subfigure}
-    ~
-	\begin{subfigure}[b]{0.3\textwidth}
-      \includegraphics[width=\textwidth]{pfc/figuras/control-version-centralized.png}
-      \caption{Controle centralizado}
-      \label{fig:version-control-centralized}
-    \end{subfigure}
-    ~
-	\begin{subfigure}[b]{0.3\textwidth}
-       \includegraphics[width=\textwidth]{pfc/figuras/control-version-distributed.png}
-       \caption{Controle distribuído}
-       \label{fig:version-control-distributed}
-    \end{subfigure}
-    ~
-    \caption{Estratégias de sistemas de controle de versão}
-    \label{fig:version-control}
-\end{figure}
-
-O sistema de controle de versão distribuído traz vantagens para o trabalho conjunto de desenvolvedores, permitindo a colaboração com diferentes pessoas de forma simultânea dentro do mesmo projeto. Cada um dos desenvolvedores pode trabalhar em uma funcionalidade diferente da aplicação ao mesmo tempo em sua máquina local, a qual possui um backup completo dos dados do projeto. O sistema distribuído permite a configuração de diferentes fluxos de trabalhos que não podem ser aplicados nos sistemas locais e centralizados. Também evita problemas decorrentes dos outros sistemas, como o único ponto de falha no sistema centralizado e a dificuldade de sincronização da equipe em sistemas locais.
-
-O sistema de controle distribuído foi utilizado no projeto através da ferramenta Git \todo{ciar git}. O Git tem sido extensivamente usado em projetos de desenvolvimento de software por todos os tamanhos de times e empresas, devido a sua facilidade de uso, performance e por se tratar de uma ferramenta de código aberto. Para gerenciamento do repositório remoto comum ao time de desenvolvimento, foi utilizado o portal GitHub \todo{citar github}. O GitHub é uma empresa que fornece serviços para facilitar o uso da ferramenta Git.
-
 % ***********
 % RESTful API
 % ***********
