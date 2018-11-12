@@ -9,7 +9,7 @@ Este capítulo tem como objetivo apresentar alguns conceitos utilizados como bas
 % Agile
 % *****
 \subsection{Agile}
-\textit{Agile} (desenvolvimento ágil de software ou métodos ágeis) é um termo que se refere a abordagem de desenvolvimento de software em que requisitos e soluções evoluem através de um esforço colaborativo de times auto-geridos e multi-funcionais, de sues clientes e usuários finais. O conceito prega planejamentos adaptativos, desenvolvimento iterativo com melhorias contínuas e encoraja a rápida e flexível resposta a mudanças. O conceito é frequentemente posto em prática com o uso de frameworks de desenvolvimento, como \textit{Scrum} e \textit{Kanban}. O termo foi popularizado através do manifesto ágil de desenvolvimento de software \todo{citar agile-manifest}, que tem como valores:
+\textit{Agile} (desenvolvimento ágil de software ou métodos ágeis) é um termo que se refere a abordagem de desenvolvimento de software em que requisitos e soluções evoluem através de um esforço colaborativo de times auto-geridos e multi-funcionais, de sues clientes e usuários finais. O conceito prega planejamentos adaptativos, desenvolvimento iterativo com melhorias contínuas e encoraja a rápida e flexível resposta a mudanças. O conceito é frequentemente posto em prática com o uso de frameworks de desenvolvimento, como \textit{Scrum} e \textit{Kanban}. O termo foi popularizado através do manifesto ágil de desenvolvimento de software \cite{agile-manifet}, que tem como valores:
 
 \begin{itemize}
     \item Indivíduos e iterações mais que processos e ferramentas
@@ -29,7 +29,7 @@ Este capítulo tem como objetivo apresentar alguns conceitos utilizados como bas
     \label{fig:scrum}
 \end{figure}
 
-\textit{Scrum} (Figura \ref{fig:scrum}) \todo{citar scrum-guide} é um framework com o propósito de abordar problemas adaptativos complexos. Ele não é um processo, técnica ou método definitivo, mas sim uma estrutura para empregar vários processos e técnicas. O framework fundamenta-se nos conceitos de transparência, inspeção e adaptação e tem como valores: compromisso, coragem, foco, abertura e respeito.
+\textit{Scrum} (Figura \ref{fig:scrum}) \cite{scrum-guide} é um framework com o propósito de abordar problemas adaptativos complexos. Ele não é um processo, técnica ou método definitivo, mas sim uma estrutura para empregar vários processos e técnicas. O framework fundamenta-se nos conceitos de transparência, inspeção e adaptação e tem como valores: compromisso, coragem, foco, abertura e respeito.
 
 O \textit{Scrum} consiste em times com atribuições associadas, eventos e artefatos. Estes elementos são elencados a seguir:
 \begin{itemize}
@@ -99,7 +99,7 @@ A Figura \ref{fig:xcode} ilustra a interface gráfica da IDE.
     \caption{Logo da linguagem de programação Swift}
     \label{fig:swift}
 \end{figure}
-As linguagens de programação com suporte oficial da Apple para desenvolvimento de aplicativos nativos para iOS são Swift e Objective-C. Até a versão iOS 7 (hoje se encontra na versão 12), o Objective-C era a linguagem oficialmente utilizada. Desde o lançamento do Swift em 2014 pela Apple, a linguagem tem crescido rapidamente em popularidade e uso, aparecendo no ranking das dez primeiras linguagens de programação utilizadas por desenvolvedores \todo{citar redmonk}. A nova linguagem tem suporte para o desenvolvimento nas plataformas iOS, macOS, watchOS, e tvOS e pode ser utilizada em conjunto com o Objective-C no mesmo projeto. A compatibilidade com a antiga linguagem, permite que novos projetos em Swift utilizem bibliotecas já implementadas em Objective-C, fato que consolidou a nova linguagem como recomendada para novas aplicações.
+As linguagens de programação com suporte oficial da Apple para desenvolvimento de aplicativos nativos para iOS são Swift e Objective-C. Até a versão iOS 7 (hoje se encontra na versão 12), o Objective-C era a linguagem oficialmente utilizada. Desde o lançamento do Swift em 2014 pela Apple, a linguagem tem crescido rapidamente em popularidade e uso, aparecendo no ranking das dez primeiras linguagens de programação utilizadas por desenvolvedores \cite{redmonk}. A nova linguagem tem suporte para o desenvolvimento nas plataformas iOS, macOS, watchOS, e tvOS e pode ser utilizada em conjunto com o Objective-C no mesmo projeto. A compatibilidade com a antiga linguagem, permite que novos projetos em Swift utilizem bibliotecas já implementadas em Objective-C, fato que consolidou a nova linguagem como recomendada para novas aplicações.
 
 O Swift traz diversos benefícios em relação ao Objective-C, a qual é considerada uma linguagem difícil de alcançar proficiência, tanto para programadores vindos de outras linguagens quanto para iniciantes. O Swift foi arquitetado para operar de forma segura, prevendo erros humanos, e para dar suporte as melhores práticas de programação. Algumas funcionalidades que dão suporte a essas premissas são a introdução de estruturas de dados mais sofisticadas (como tuplas) e o fato da linguagem assegurar a tipagem de dados, prevendo erros de passagem errônea de dados, e oferecer valores opcionais (\textit{Optionals}), prevendo erros de ponteiros nulos recorrentes no Objective-C por exemplo. Tendo em vista o que foi citado, a linguagem Swift foi a escolhida para o desenvolvimento do aplicativo deste trabalho.
 
@@ -110,13 +110,13 @@ O Swift traz diversos benefícios em relação ao Objective-C, a qual é conside
     \caption{Logo do gerenciador de dependências CocoaPods}
     \label{fig:cocoapods}
 \end{figure}
-O uso de gerenciadores de dependências, para controlar a utilização de bibliotecas externas no projeto, é um padrão para o desenvolvimento iOS. Uma das ferramentas mais frequêntes em projetos é o CocoaPods (Figura \ref{fig:cocoapods}), com mais de $53$ mil bibliotecas disponíveis e mais de $3$ milhões de aplicativos utilizando a ferramenta \todo{citar cocoapods}.
+O uso de gerenciadores de dependências, para controlar a utilização de bibliotecas externas no projeto, é um padrão para o desenvolvimento iOS. Uma das ferramentas mais frequêntes em projetos é o CocoaPods (Figura \ref{fig:cocoapods}), com mais de $53$ mil bibliotecas disponíveis e mais de $3$ milhões de aplicativos utilizando a ferramenta \cite{cocoapods}.
 
 % ***********
 % RESTful API
 % ***********
 \section{RESTful API's}
-Um dos tipos mais populares de API é a baseada na arquitetura REST (\textit{Representational State Transfer}), a qual consiste em uma abstração dos elementos arquitetônicos dentro de um sistema hipermídia distribuído \todo{citar rest}. 
+Um dos tipos mais populares de API é a baseada na arquitetura REST (\textit{Representational State Transfer}), a qual consiste em uma abstração dos elementos arquitetônicos dentro de um sistema hipermídia distribuído \cite{rest-api}. 
 RESTful APIs foram projetadas para se beneficiar de protocolos existentes, utilizando o HTTP para web API's. Uma das vantagens da abordagem é o ganho de flexibilidade, já que dados não são atrelados a recursos ou métodos, permitindo a manipulação de múltiplos tipos de chamadas com diferentes formatos de retorno de dados. Esta flexibilidade permite a construção de API's que atendem a necessidade de todas as partes envolvidas no projeto. As seguintes características são observadas em RESTful API's:
 
 \begin{itemize}
@@ -136,5 +136,4 @@ RESTful APIs foram projetadas para se beneficiar de protocolos existentes, utili
 % Testes Automatizados
 % ********************
 \section{Testes Automatizados}
-\missingfigure{Figuras classicas dos testes, modelo em V, piramide etc}
 \subsection{Testes de UI}
