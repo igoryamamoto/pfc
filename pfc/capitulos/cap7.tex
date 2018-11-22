@@ -71,6 +71,40 @@ O resultado da implementação da aplicação, no período contemplado neste PFC
     \label{fig:all-screens}
 \end{figure}
 
+\section{Testes Automatizados}
+\subsection{Comparação entre Ferramentas}
+Com base em pesquisas e nas implementações dos casos de teste, foi possível traçar um comparativo entre as ferramentas a respeito dos seguintes critérios:
+
+\begin{itemize}
+    \item Setup: a configuração do EarlGrey foi de relativa facilidade, uma vez que a ferramenta utiliza o mesmo ambiente de desenvolvimento do aplicativo iOS (Xcode). Em contrapartida, o setup do Appium apresentou mais dificuldades por requerer mais etapas de configuração, incluindo instalação de outros componentes de software.
+    \item Facilidade de Uso: ambas as ferramentas apresentaram baixa complexidade de uso, facilitando o desenvolvimento dos casos de teste. As API's disponíveis são de fácil entendimento e uso. 
+    \item Desempenho: o desempenho das ferramentas foi avaliado com base no tempo de execução do primeiro caso de teste. Cinco rodadas de execução foram realizadas para cada uma das ferramentas, além do mesmo ser feito para a execução manual do teste. A Figura \ref{fig:box-plot-time} ilustra o resultado do experimento. O EarlGrey obteve o melhor desempenho, com tempo médio de $1$min e $47$s; em seguida encontram-se os testes manuais, com tempo médio de $1$min e $59$s; por último, o Appium obteve um tempo médio de $3$min e $2$s. O maior tempo de execução do Appium era esperado, uma vez os comandos enviados através da ferramenta para o dispositivo são intermediados por um servidor web local. Os tempos de execução foram considerados razoáveis para ambas as ferramentas frente ao cenário de uso. Contudo, para aplicações com diferentes escalas de teste, novos testes devem ser realizados.
+    \item Versatilidade: o Appium mostrou-se ser mais versátil que o EarlGrey por ter suporte multiplataforma (podendo ser utilizado em sistemas iOS, Android e Web). O EarlGrey está restrito ao sistema iOS. Além disso, o Appium conta com API's em mais linguagens de programação, como Python e Javascript. O EarlGrey está restrito às linguagens de desenvolvimento iOS.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/box-plot-time.png}
+    \caption{Comparação entre tempos de execução dos testes}
+    \label{fig:box-plot-time}
+\end{figure}
+
+\subsection{Validade dos Casos de Teste}
+O estudo e implementação dos casos de teste resultaram em algumas conclusões a respeito da importância da realização dos mesmos no contexto do projeto. Ambos os testes foram considerados relevantes para o teste da aplicação. Contudo a forma de realização dos mesmos pode ser melhorada para otimizar os retornos para o projeto.
+
+O primeiro caso de teste apresentou boas perspectivas para implementações futuras em situações semelhantes. O teste teve bom desempenho em relação ao tempo de execução, superando o tempo de teste feito manualmente. O tempo de implementação do teste também foi razoável e a curto prazo pode trazer retornos ao evitar a repetição do teste manual. Além disso, o teste apresentou relevância em termos de qualidade do produto, assumindo o papel de teste de aceitação e regressão. A primeira função decorre do fato do mesmo possibilitar a validação de um fluxo de uso do aplicativo, ao interagir com diversas telas de forma a simular o comportamento real do usuário. Enquanto a última, permite que a integridade do fluxo de uso seja testada após a adição de novas funcionalidades.
+
+O segundo teste mostrou-se importante para testar múltiplas combinações de entrada de usuário. O teste revelou falhas no design do aplicativo do ponto de vista de usabilidade, ao expor os diversos cenários de estados de erro. O mesmo também possibilitou a verificação das mensagens e estados de erro. Contudo, o teste apresentou resultados ruins em termos de desempenho de execução, chegando a ultrapassar $20$min de tempo total. Este resultado ruim indica que o teste deveria ser realizado em um nível mais baixo da camada de testes (possivelmente na camada de serviços, ao invés de ser feito a nível de interface gráfica), de forma a ficar mais próximo ao código.
+
+\subsection{Processos da Empresa}
+O estudo trouxe resultados em questão ao valor que os testes automatizados podem adicionar ao produto, ao cliente e ao time de desenvolvimento dentro da empresa. Ao introduzir a implementação de testes automatizados no projeto, o produto ganha mais uma sustentação na sua garantia de qualidade. Os testes automatizados de interface gráfica tem potencial para aumentar a satisfação do cliente, ao permitir que o mesmo visualize a integridade do produto constantemente durante sua evolução, através de gravações de vídeos e fotos de telas em diferentes tamanhos de dispositivos.
+
+O estudo revelou a necessidade da empresa estruturar projetos de teste em níveis mais baixos, como testes unitários e na camada de serviços. Antes de investir mais tempo em testes automatizados voltados a interface gráfica, implementações podem ser feitos nas outras camadas. O segundo caso de teste apresentado neste trabalho exemplifica a necessidade, justificada pelo fato do teste ter demandado tempo que poderia ser poupado, caso o mesmo fosse implementado em camadas inferiores.
+
+A implementação dos testes automatizados de interface gráfica mostrou-se adequada ao atual cenário de fluxo de trabalho da empresa. Este fato decorre dos testes poderem ser feitos de maneira isolada da aplicação. Pequenos ajustes podem ser realizados para permitir que o processo seja desempenhado com maior fluidez, como a adição de identificadores de acessibilidade desde o começo do projeto. Além disso, scripts podem ser criados para facilitar a chamada dos testes, abrindo possibilidade para que os testes sejam performados em mais tipos de dispositivos e paralelizados.
+
+O estudo trouxe contribuições em relação ao que pode ser testado e a quem é atribuída a função de criar os testes de interface gráfica. Para esta camada, testes podem ser realizados para testar os principais fluxos da aplicação de maneira, garantindo a integridade contínua e a adequação às regras de negócio. Pelo fatos deste tipo de teste estar próximo ao comportamento do usuário final, todo o time pode estar envolvido na elaboração. Além disso, o fator de isolamento, em relação ao código da aplicação, permite que os testes sejam implementados e executados por mais membros técnicos da equipe.
+
 \section{Validação do Programa de Capacitação da Empresa}
 O presente trabalho esteve inserido na empresa Jungle Devs como parte do programa de capacitação do autor. O programa de capacitação \textit{Academy} não havia sido concluído por nenhuma pessoa anteriormente. Portanto, um dos resultados obtidos por este PFC para a empresa é a validação do programa.
 
@@ -83,5 +117,3 @@ Além de validar a etapa final do programa \textit{Academy}, na qual o projeto d
     \caption{Dados de contribuição no projeto do aplicativo iOS por membro do time}
     \label{fig:github-stats}
 \end{figure}
-
-\section{Testes Automatizados}
