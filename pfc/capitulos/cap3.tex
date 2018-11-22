@@ -129,9 +129,39 @@ RESTful APIs foram projetadas para se beneficiar de protocolos existentes, utili
 % Back-end
 % ********************
 \section{Back-end}
+Front-end e back-end são termos utilizados para caracterizar interfaces e serviços de um sistema de software. Os termos são utilizados para separar as responsabilidades das camadas de apresentação (front-end) e da camada de acesso a dados (back-end). A parte da aplicação em que o usuário realiza interações de forma direta é atribuída ao front-end. Enquanto o back-end tem a responsabilidade de prover a infraestrutura da aplicação. O back-end também fornece serviços para que o front-end apresente e colete os dados da aplicação. Dentro desses serviços estão a implementação de lógicas de negócio do sistema e envio e armazenamento de dados. Em aplicações móveis, é comum a presença de um back-end localizado em servidor web, provendo os mesmos serviços para todos os usuários.
 
 % ********************
 % Testes Automatizados
 % ********************
-\section{Testes Automatizados}
-\subsection{Testes de UI}
+\section{Testes de Software}
+Um teste de software é o processo de avaliar se um sistema ou seus componentes satisfazem requisitos especificados \cite{software-testing}. Testes fazem parte do controle de qualidade de um produto ou serviço. A área de estudo de testes de software é vasta, contemplando diversos tipos de testes com diferentes propósitos e maneiras de serem implementados, como os que seguem:
+
+\begin{itemize}
+    \item Teste de fumaça: checagem básica das funcionalidade do software;
+    \item Teste de regressão: detecção de erros após mudanças no código;
+    \item Teste de aceitação: verificação se a solução funciona para o usuário;
+    \item Teste de usabilidade: verificação da facilidade de uso do sistema;
+    \item Teste exploratório: uso do sistema de forma não-determinística.
+\end{itemize}
+
+\subsection{Testes Automatizados}
+Testes automatizados consistem em qualquer tipo de teste que é executado e tem seus resultados verificados de forma automática. Testes deste tipo podem ser utilizados para substituir ou complementar os realizados manualmente, os quais podem ser por vezes tediosos, propensos a erros humanos e custosos. Geralmente são escritos para serem executados diversas vezes no decorrer do projeto.
+
+Os testes automatizados podem ser realizados em diferentes camadas do sistema de software. A pirâmide de automação de testes \cite{test-pyramid} (Figura \ref{fig:piramid}) ilustra os diferentes níveis. Na base da pirâmide, encontram-se os testes unitários, referentes a funcionalidade de um componente do software. Na camada intermediária, estão os testes de serviço ou de integração, responsáveis por testar a interação entre diferentes componentes em resposta a entradas no sistema. No topo, localizam-se os testes de interface gráfica (ou de UI, do inglês \textit{User Interface}), os quais simulam o comportamento do usuário final do sistema frente a interface gráfica do software. A pirâmide tem como propósito indicar onde os esforços devem estar concentrado para se obter o melhor retorno de investimento, sendo na base onde os testes devem ocorrer com maior frequência.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/piramid.png}
+    \caption{Pirâmide de testes automatizados}
+    \label{fig:piramid}
+\end{figure}
+
+\subsubsection{Implementação de Testes Automatizados de Interface Gráfica}
+A implementação de testes automatizados é realizada com o auxílio de ferramentas que devem desempenhar três tipos de comandos:
+
+\begin{itemize}
+    \item Seleção: localiza os elementos da interface gráfica. A seleção pode ser realizada de diversas formas, como através do identificador de acessibilidade do componente (utilizado para inclusão digital de pessoas com deficiência visual), pela hierarquia de componentes da interface ou pelo valor de alguma propriedade do elemento (como o texto dentro de um botão). A seleção de elementos através do identificador de acessibilidade costuma ser a melhor prática a ser adotada, uma vez que esta permite a identificação única do componente.
+    \item Ação: realiza interações a partir dos elementos selecionados da interface. Diversos tipos de ações podem ser performadas de acordo com o tipo de interface sendo testada. Para dispositivos móveis, ações com pressionar botões, inserir caracteres em campos de texto ou movimentar a tela em diferentes direções podem ser feitas.
+    \item Asserção: checa uma condição lógica, estado ou comportamento relativo à interface. Exemplos de asserção são a checagem da visibilidade de elementos da tela ou a verificação de valores corretos apresentados de acordo com os esperados.
+\end{itemize}
