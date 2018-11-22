@@ -1,87 +1,178 @@
-\chapter{Resultados} \label{cap:results}
-Neste capítulo são apresentados os resultados obtidos do trabalho desenvolvido. Primeiramente, os resultados de negócio envolvidos na implementação da aplicação são apresentados. Em seguida, uma comparação das ferramentas de teste automatizado é feita. Por último, são discutidos os resultados obtidos do ponto de vista da empresa em que este projeto esteve inserido.
+\chapter{Testes Automatizados de Interface Gráfica} \label{cap:tests}
 
-\section{Versão Piloto}
-\subsection{Uso do Aplicativo}
-O desenvolvimento do aplicativo para o sistema iOS, apresentado neste trabalho, culminou no lançamento da sua versão piloto. Esta versão consiste na primeira etapa de lançamentos do produto e tem como objetivo a validação da ideia. O aplicativo piloto foi avaliado por um grupo seleto de academias e treinadores, localizados em Sydney.
+\section{Definição do Projeto de Testes}
+O projeto de testes da aplicação inicialmente previa apenas testes manuais, tanto a nível de código, quanto em relação à interface gráfica. Atualmente, a empresa Jungle Devs não tem uma estrutura formalizada para a implementação de testes automatizados em seus projetos de software. Testes manuais são realizados a cada final de \textit{sprint} por um time de garantia de qualidade, responsável por detectar problemas no sistema e por reportar os mesmos ao time de desenvolvimento.
 
-A Figura \ref{fig:pilot-use} ilustra a utilização da versão piloto do aplicativo, com dados coletados da ferramenta Fabric. O gráfico mostra o número de usuários ativos diariamente desde o lançamento do piloto. O eixo horizontal representa a evolução temporal em dias, enquanto o eixo vertical contém o número total de usuários diários. O primeiro pico (entre os dias 10 e 28 de outubro) corresponde a distribuição de um incremento da versão piloto, ultrapassando o número de 10 usuários. O segundo e o terceiro picos (entre os dias 4 e 11 de novembro) dizem respeito a uma nova versão de incremento do piloto, com o convite de mais parceiros para o teste do aplicativo. Totalizando 19 usuários utilizando a aplicação.
+O presente trabalho apresentou oportunidades para o início de um processo de estudo e implementação de testes automatizados dentro da empresa. Testes automatizados de interface gráfica podem ser realizados sem alterar a estrutura do software e o fluxo de trabalho da empresa. Esta característica se deve ao fato de se tratarem de testes do tipo caixa preta. Assim, optou-se por iniciar um projeto de testes experimental, a nível de interface gráfica, para avaliar possibilidades de adoção de testes automatizados dentro da empresa e a factibilidade do uso de ferramentas para este fim.
+
+Os testes automatizados foram realizados com a interface do aplicativo já implementada. Como consequência, o projeto de testes teve início após o encerramento do ciclo de desenvolvimento da fase piloto do aplicativo. Assim, os testes foram tratados de forma isolada ao projeto do aplicativo, utilizando-se do mesmo apenas como cenário para um caso de estudo. Coube ao autor a responsabilidade completa pela condução do estudo dos testes.
+
+A camada de testes automatizados de interface gráfica procura simular o comportamento do usuário final da aplicação. Assim, testes de aceitação são ideias para serem implementados neste nível. Dois casos de teste foram escolhidos para o estudo: fluxo de cadastro das academias e erros de cadastro do treinador. Ambos os casos pertencem a parte de cadastro do aplicativo. Estes foram escolhidos por se tratarem de cenários muito recorrentes em projetos de aplicativos, assim futuras implementações dentro da empresa podem se beneficiar deste trabalho.
+
+\section{Ferramentas Escolhidas}
+Os testes automatizados foram implementados com o auxílio de ferramentas específicas para este tipo de testes. Existem muitas opções de frameworks disponíveis, tanto proprietárias, quanto de código aberto. Neste projeto, optou-se pelo uso somente de ferramentas de código aberto, por serem de fácil acesso e terem bom suporte oferecido pela comunidade de software (desenvolvedores independentes e empresas).
+
+Existem ferramentas com suporte específico para determinadas plataformas e outras que podem servir casos para múltiplas delas. O desenvolvimento do aplicativo Gyymi foi requisitado para duas plataformas: Android e iOS. Assim, um ferramenta que suportasse diferentes sistemas operacionais foi escolhida, o Appium. E devido ao fato do aplicativo apresentado neste trabalho ser voltado ao sistema iOS, outra ferramenta específica para a plataforma em questão também foi selecionada, o EarlGrey.
+
+Além do Appium e do EarlGrey, também foi considerado a utilização da suíte de testes integrada ao Xcode, denominada XCUITest. Porém nenhum dos casos de teste implementados utilizou o XCUITest, pelo fato do desenvolvimento com o EarlGrey ser julgado suficiente para contemplar o uso de ferramentas específicas de plataforma. A ferramenta Appium foi a mais utilizada por apresentar maior potencial de reuso, tendo os dois casos de teste sido implementados com a mesma. O EarlGrey foi utilizado apenas no primeiro cenário de testes.
+
+\section{Pré-configurações e Setup das Ferramentas}
+
+\subsection{Modificações no Projeto}
+A estrutura do código fonte do projeto manteve-se inalterada, contudo algumas adaptações foram realizadas para permitir as implementações. Os testes de interface gráfica foram desenvolvidos de modo a reconhecer componentes através da identificação de acessibilidade. Estas identificações não haviam sido criadas na fase de desenvolvimento do piloto e, portanto, tiveram que ser adicionadas aos componentes da interface que foram utilizados nos casos de teste.
+
+\subsection{Appium}
+A utilização do Appium foi feita através da API disponível para a linguagem Python. A escolha da linguagem se deve ao fato do autor já estar familiarizado com sua sintaxe e, também, pela empresa utilizar a linguagem em outras stacks, como no back-end. O código em Python foi escrito com editor de text Visual Studio Code.
+
+Além da API em python, o Appium necessita que um servidor web local seja instanciado. Este é responsável por intermediar as interações entre os comandos enviados da API e o dispositivo móvel que contém o aplicativo. Para que este servidor seja criado, existem duas alternativas: através da CLI do Appium (Figura \ref{fig:appium-cli}) ou pela GUI do Appium (\ref{fig:appium-desktop}). As duas opções foram testadas. A CLI é de fácil utilização, contendo apenas um comando principal. A GUI oferece opções de configurações mais acessíveis, além de outras funcionalidades, como a inspeção (Figura \ref{fig:appium-desktop-inspector}) da execução do aplicativo (permite a visualização da hierarquia dos componentes da interface).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{pfc/figuras/pilot-use.png}
-    \caption{Uso diário da versão piloto do aplicativo}
-    \label{fig:pilot-use}
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/appium-cli.png}
+    \caption{CLI do Appium}
+    \label{fig:appium-cli}
 \end{figure}
 
-\subsection{Desenvolvimento do Produto}
-O resultado da implementação da aplicação, no período contemplado neste PFC de aproximadamente 4 meses, contribuíram para grandes avanços no desenvolvimento do produto. A versão atual do aplicativo para o sistema iOS totaliza 33 telas principais de interação com o usuário (Figura \ref{fig:all-screens}). Estas interfaces permitem que os seguintes fluxos de atividade sejam realizados pelos usuários finais do produto:
-\begin{itemize}
-    \item Cadastro de academias
-    \item Cadastro de treinadores
-    \item Construção de agenda semanal de blocos para locação nas academias
-    \item Acompanhamento diário de sessões de treino agendadas nas academias
-    \item Visualização de dados semanais das academias em dashboard
-    \item Visualização e edição de perfil das academias
-    \item Busca por academias disponíveis em mapa dinâmico
-    \item Adição de academias à seleção de favoritos
-    \item Visualização de agenda diária dos treinadores
-    \item Cancelamento e avaliação de sessões de treino
-    \item Visualização e edição de perfil de treinador
-    \item Visualização de dados semanais dos treinadores em dashboard
-    \item Visualização de disponibilidade diária de blocos de academias através de calendário
-    \item Agendamento de sessão de treino
-\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/appium-desktop.png}
+    \caption{GUI do Appium}
+    \label{fig:appium-desktop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/appium-desktop-inspector.png}
+    \caption{Ferramenta de inspeção do Appium}
+    \label{fig:appium-desktop-inspector}
+\end{figure}
+
+\subsection{EarlGrey}
+A configuração do EarlGrey requer menos passos, já que sua utilização é feita pelo Xcode. Primeiramente, um novo objeto de projeto (\textit{target} em inglês) dentro do Xcode foi criado para isolar o código de testes e o referente à aplicação. Assim, a compilação do código dos testes e da aplicação dá-se de forma separada, bem como a configuração de dependências para os dois casos. Por último, o EarlGrey é adicionado como dependência do código dos testes automatizados.
+
+\section{Casos de Teste}
+
+\subsection{Estratégia de Implementação}
+A implementação dos testes seguiu o paradigma de programação orientado a objetos. A escolha da abordagem foi feita pelo fato do código do aplicativo também utilizar o paradigma como estrutura. A Figura \ref{fig:class-diagram-tests} apresenta o diagrama de classes para os casos de teste. Uma classe base foi criada para implementar os métodos comuns aos casos de teste, como chamadas para iniciar e encerrar gravações de vídeo, tirar fotos da tela e preencher campos de texto. Além disso, a classe base contém uma propriedade que referencia um objeto de geração de conteúdo (implementado por bibliotecas de terceiros), o qual simula a entrada de dados de um usuário real. Em seguida, uma classe foi criada para cada cenário de teste, contendo os métodos específicos para cada caso.
+
+O código segue uma abordagem declarativa, isto é, são criadas camadas de abstrações através de funções que representam o que é realizado no teste. A estratégia tem o objetivo de possibilitar o reuso de código, aumentar a legibilidade e permitir que pessoas que não tem contato com as linguagens e ferramentas compreendam o que o código de teste realiza.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/class-diagram-tests.png}
+    \caption{Diagrama de classes para os casos de teste}
+    \label{fig:class-diagram-tests}
+\end{figure}
+
+\subsection{Fluxo de Cadastro das Academias}
+Este primeiro caso tem como objetivo testar o fluxo de cadastro de academias no aplicativo. A sequência tem início na tela de entrada do aplicativo (Figura \ref{fig:landing}) e encerra-se ao final do cadastro (Figura \ref{fig:gym-welcome}). O teste tem sucesso se todas as etapas do cadastro são concluídas, ou seja, da perspectiva da interface gráfica, todas as telas de cadastro devem ser visualizadas. Garantir que este fluxo funcione da maneira esperada é de fundamental importância, uma vez que as principais interações no aplicativo ocorrem em torno da entidade da academia.
+
+A implementação deste cenário de teste foi realizada no Appium e no EarlGrey. A Figura \ref{fig:test-flow} ilustra o trecho de código em que o método principal do caso de teste é chamado em ambas as ferramentas. Nota-se uma grande semelhança nos dois códigos implementados para cada uma das ferramentas, em razão da estratégia de código declarativo.
+
+As Figuras \ref{fig:fill-gym-appium} e \ref{fig:fill-gym-earlgrey} apresentam detalhes do código de uma dos métodos da classe do caso de teste. O método é responsável por enviar comandos para simular a interação de um usuário com a interface gráfica, como clicar em botões e preencher campos de texto. O exemplo ilustra o caso do preenchimento da tela de cadastro do perfil da academia (Figura \ref{fig:register-gym-info}).
+
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/landing.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/login.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/register-manager.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/register-gym-info.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/register-gym-photos.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/register-gym-amenities.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/gym-welcome.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/bank-details.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/gym-block-structure.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/gym-add-block.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/gym-booking-calendar.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/gym-booking-detail.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/gym-dashboard.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/gym-profile.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/register-trainer.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/register-trainer-verification.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-congratulations.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-register-profile-1.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-gym-profile-2.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-register-profile-3.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-home-map.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-favorite.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-my-gyms.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-calendar.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-profile.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-dashboard.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/add-card.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/manage-cards.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-gym-profile-2.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-availability-2.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-new-booking.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-booking-payment.png}
-    \includegraphics[width=0.14\textwidth]{pfc/figuras/tr-booking-confirmed.png}
-    \caption{Todas as telas desenvolvidas para a versão piloto}
-    \label{fig:all-screens}
+    \begin{subfigure}[b]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/test-flow-appium.png}
+        \caption{Appium}
+        \label{fig:test-flow-appium}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/test-flow-earlgrey.png}
+        \caption{EarlGrey}
+        \label{fig:test-flow-earlgrey}
+    \end{subfigure}
+    ~
+    \caption{Funções de teste do fluxo de cadastro das academias}
+    \label{fig:test-flow}
 \end{figure}
 
-\section{Validação do Programa de Capacitação da Empresa}
-O presente trabalho esteve inserido na empresa Jungle Devs como parte do programa de capacitação do autor. O programa de capacitação \textit{Academy} não havia sido concluído por nenhuma pessoa anteriormente. Portanto, um dos resultados obtidos por este PFC para a empresa é a validação do programa.
-
-A proposta de conclusão de um projeto de aplicação prática real, em conjunto com um time de engenharia de software, foi efetuada com sucesso. O projeto do aplicativo Gyymi para o sistema iOS se mostrou eficaz para a capacitação do autor em projetos de aplicações \textit{mobile}. Isso se deve ao fato do aplicativo contemplar a maioria das funcionalidades recorrentes em aplicativos em produção no mercado, como cadastro e autenticação de usuários, navegação customizada por múltiplas telas e integração com sistemas de software terceiros.
-
-Além de validar a etapa final do programa \textit{Academy}, na qual o projeto do aplicativo esteve inserido, o trabalho revelou bons resultados no que diz respeito às etapas anteriores. Esta afirmação é justificada a partir da análise da contribuição prática do autor para o projeto. A partir dos dados disponíveis no repositório do código fonte da aplicação (ver Figura \ref{fig:github-stats}), é possível concluir que o autor teve contribuições significativas desde o começo do projeto. Os dados indicam a contribuição do autor em $70\%$ das linhas de código modificadas durante o projeto, totalizando $55408$ alterações. Além disso, o autor teve contribuição em $74\%$ dos incrementos de versão do código (\textit{commits}), totalizando $699$ mensagens de incremento salvas. Assim, é possível concluir que as etapas iniciais do programa de capacitação foram efetivas para a aprendizagem de conceitos práticos de projeto.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{pfc/figuras/github-stats.png}
-    \caption{Dados de contribuição no projeto do aplicativo iOS por membro do time}
-    \label{fig:github-stats}
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/fill-gym-appium.png}
+    \caption{Detalhe de implementação de um método do caso de teste que realiza os comandos para interação com a interface gráfica - Appium}
+    \label{fig:fill-gym-appium}
 \end{figure}
 
-\section{Testes Automatizados}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pfc/figuras/fill-gym-earlgrey.png}
+    \caption{Detalhe de implementação de um método do caso de teste que realiza os comandos para interação com a interface gráfica - EarlGrey}
+    \label{fig:fill-gym-earlgrey}
+\end{figure}
+
+\subsection{Erros de Cadastro do Treinador}
+Este caso tem como objetivo testar as mensagens (Figura \ref{fig:error-messages-test}) e estados de erro (Figura \ref{fig:error-states-test}) no preenchimento das informações de usuário do treinador (Figura \ref{fig:register-trainer-info}). O teste tem sucesso se as mensagens correspondem às esperadas para cada caso de erro.
+
+A implementação deste caso foi feita de forma exaustiva, ou seja, todas as combinações possíveis de entradas de campo de texto foram testadas, considerando duas opções para cada entrada: válida ou inválida. Como exemplo, o campo de e-mail teve a entrada "igor@jungledevs.com" considerada válida e a entrada "invalidemail", inválida.
+
+A implementação deste cenário de teste foi realizada somente no Appium. O uso do EarlGrey para este caso foi julgado desnecessário para o estudo, uma vez que o primeiro caso já indicou que a implementação seria semelhante e que informações suficientes para o comparativo entre as ferramentas já haviam sido coletadas. Além disso, a execução do caso de teste mostrou-se demasiadamente lenta, pelo fato de ser exaustiva.
+
+\begin{figure}[H]
+	\centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/email-not-valid.png}
+        \caption{E-mail inválido}
+        \label{fig:email-not-valid}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/password-not-valid.png}
+        \caption{Senha inválida}
+        \label{fig:password-not-valid}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/fields-empty.png}
+        \caption{Campo nulo}
+        \label{fig:empty-fields}
+    \end{subfigure}
+    ~
+    \caption{Mensagens de erro testadas no cadastro de usuário}
+    \label{fig:error-messages-test}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/email-not-valid-field.png}
+        \caption{Email inválido}
+        \label{fig:email-not-valid-field}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/phone-not-valid-field.png}
+        \caption{Número telefônico inválido}
+        \label{fig:phone-not-valid-field}
+    \end{subfigure}
+    ~
+    \caption{Estados de erro testados no cadastro de usuário}
+    \label{fig:error-states-test}
+\end{figure}
+
+\section{Dificuldades e Limitações do Estudo}
+A maior dificuldade de implementação encontrada foi o setup das ferramentas, em particular do Appium. Esta etapa demandou uma porção de tempo considerável em relação ao total despendido para o estudo. A dificuldade foi decorrente da inexperiência da realização do processo pelos membros da empresa e pelo autor. O Appium exigiu um esforço extra por se tratar de uma ferramenta externa ao ambiente de desenvolvimento iOS. Para configurar a ferramenta, foi necessária a instalação de componentes externos de software (como a CLI e GUI do Appium), a instalação de bibliotecas no Python e configuração de integração entre o simulador de dispositivos do Xcode e o servidor web do Appium.
+
+A segunda dificuldade encontrada na condução do estudo foi a identificação de causas de erro na execução dos testes, particularmente no Appium novamente. As mensagens de erro do Appium são mais verbosas que as mensagens do EarlGrey (ver comparação na Figura \ref{fig:error-test-tools}), o que dificulta a identificação da causa do erro.
+
+\begin{figure}[H]
+	\centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/error-appium.png}
+        \caption{Erros no Appium}
+        \label{fig:error-appium}
+    \end{subfigure}
+    ~
+	\begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{pfc/figuras/error-earlgrey.png}
+        \caption{Erros no EarlGrey}
+        \label{fig:error-earlgrey}
+    \end{subfigure}
+    ~
+    \caption{Mensagens de error durante a execução dos testes}
+    \label{fig:error-test-tools}
+\end{figure}
+
+O estudo esteve limitado a testes no aplicativo iOS, excluindo-se a plataforma Android. O autor não esteve envolvido no desenvolvimento do aplicativo para o sistema Android e, em decorrência deste fator, não foi possível aplicar os testes à plataforma por limitações de tempo. Esta restrição influencia a comparação entre as ferramentas, uma vez que uma dos benefícios do Appium é o suporte à múltiplas plataformas.

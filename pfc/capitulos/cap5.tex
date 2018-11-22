@@ -1,5 +1,5 @@
-\chapter{Implementação e Testes} \label{cap:development}
-Neste capítulo, são apresentados os detalhes de implementação e testes da aplicação.
+\chapter{Implementação e Integração do Aplicativo} \label{cap:development}
+Neste capítulo são apresentadas as implementações e integrações de sistemas realizadas para o aplicativo iOS. Somente as partes do projeto em que o autor esteve envolvido são apresentadas. Portanto, os detalhes de implementação do aplicativo para o sistema Android e do back-end da aplicação não são abordados, assim como a elaboração do design gráfico das telas. O autor teve participação central nas implementações do aplicativo iOS e integração de sistemas.
 
 \section{Arquitetura da Aplicação}
 A arquitetura global da aplicação é ilustrada na Figura \ref{fig:architecture}. O diagrama tem os principais sistemas de software representados pelas caixas e a comunicação entre os mesmos representada pelas setas. 
@@ -27,12 +27,12 @@ A Figura \ref{fig:database} ilustra o modelo de dados projetado através do diag
 \end{figure}
 
 \section{Aplicativo iOS}
-Nesta secção são apresentados os detalhes de cada camada da arquitetura do aplicativo iOS, com exemplos de implementação. Em seguida, são apresentados os critérios de avaliação das implementações. Por fim, são apresentados os desafios e dificuldades da implementação do aplicativo iOS.
+Nesta seção são apresentados os detalhes de cada camada da arquitetura do aplicativo iOS, com exemplos de implementação. Em seguida, são apresentados os critérios de avaliação das implementações. Por fim, são apresentados os desafios e dificuldades da implementação do aplicativo iOS.
 
 % *******
 % Modelos
 % *******
-\subsection{\textit{Model}: Representação de dados}
+\subsection{\textit{Model}: Representação de Dados}
 Os dados da aplicação são representados localmente no aplicativo iOS através de \textit{struct}'s, estrutura de dado da linguagem Swift. Uma \textit{struct} no Swift permite definir propriedades e armazenar valores, definir métodos e inicializadores, além de permitir a conformação com protocolos. Os dados apresentados no aplicativos são provenientes dos retornos das chamadas de API's e são armazenados, em sua maioria, de forma volátil no aplicativo, na memória do dispositivo. Apenas alguns dados são persistidos no dispositivo: os dados do modelo de usuário e academia são mantidos para acesso rápido; o \textit{token} de autenticação do usuário também é mantido no dispositivo para que o mesmo possa manter sua sessão atual ativa, mesmo após fechar o aplicativo.
 
 
@@ -40,7 +40,7 @@ A Figura \ref{fig:user-model} exemplifica a representação de dados no aplicati
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{pfc/figuras/user-model.png}
+    \includegraphics[width=0.6\textwidth]{pfc/figuras/user-model.png}
     \caption{Exemplo de modelo local de dados no aplicativo iOS}
     \label{fig:user-model}
 \end{figure}
@@ -55,7 +55,7 @@ A Figura \ref{fig:controller-example} contém um trecho de código de um exemplo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{pfc/figuras/ex-tr-dashboard.png}
+    \includegraphics[width=0.9\textwidth]{pfc/figuras/ex-tr-dashboard.png}
     \caption{Exemplo de implementação de controladores no aplicativo iOS}
     \label{fig:controller-example}
 \end{figure}
@@ -135,7 +135,7 @@ Em relação à parte lógica do aplicativo, o tratamento de erros apresentou al
 % Integração de Sistemas
 % **********************
 \section{Integração de Sistemas}
-O desenvolvimento da aplicação evolveu a integração de múltiplos sistemas de software, tanto internos quanto externos. Nesta secção, primeiro é apresentada a integração com o sistema de back-end, desenvolvido internamente. Em seguida, o mesmo é feito para os sistemas externos. Por último, a ferramenta utilizada para testes das integrações feitas por RESTful API's são apresentadas. 
+O desenvolvimento da aplicação evolveu a integração de múltiplos sistemas de software, tanto internos quanto externos. Nesta seção, primeiro é apresentada a integração com o sistema de back-end, desenvolvido internamente. Em seguida, o mesmo é feito para os sistemas externos. Por último, a ferramenta utilizada para testes das integrações feitas por RESTful API's são apresentadas. 
 
 \subsection{Back-end}
 A integração com o back-end foi feita por meio de uma API REST. A API fornece endpoints que retornam informações relacionadas à lógica de negócio da aplicação e permitem o cadastro de dados do usuário.
@@ -254,16 +254,3 @@ A Figura \ref{fig:postman} ilustra a interface do Postman. Na esquerda, encontra
     \caption{Postman - ferramente utilizada para testes de RESTful API's}
     \label{fig:postman}
 \end{figure}
-
-% ********************
-% Testes Automatizados
-% ********************
-\section{Testes Automatizados de Interface Gráfica}
-
-\subsection{Implementação dos Testes}
-
-\subsubsection{EarlGrey}
-
-\subsubsection{Appium}
-
-\subsubsection{XCUITest}

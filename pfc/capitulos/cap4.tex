@@ -1,6 +1,13 @@
 \chapter{O Aplicativo Gyymi} \label{cap:gyymi}
 Neste capítulo é apresentado o projeto do aplicativo Gyymi do ponto de vista do usuário do sistema. Os principais fluxos de uso do aplicativo são expostos, com comentários da parte técnico quando necessários.
 
+\section{Estado Anterior do Aplicativo}
+O aplicativo para o sistema iOS foi inteiramente desenvolvido no período em que este trabalho foi realizado. Apenas o design visual do aplicativo existia no momento em que o PFC teve início. As etapas de ideação do produto, pesquisa de mercado e design do projeto foram responsabilidade da empresa contratante da Austrália e já haviam sido concluídas.
+
+O time da Jungle Devs envolvido no projeto do Gyymi seguiu a estrutura do \textit{Scrum}. O \textit{product owner} e o \textit{scrum master} foram uma única pessoa. Devido ao tamanho reduzido da equipe, não foi julgado necessário duas pessoas para tal atribuições. O time de desenvolvimento foi composto por um desenvolvedor back-end, um líder técnico iOS, um desenvolvedor iOS (função exercida pelo autor), um desenvolvedor Android e um designer. As \textit{sprints} tiveram durações de duas semanas, o \textit{daily scrum} foi executado todos os dias com duração máxima de quinze minutos e os eventos de \textit{sprint review}, \textit{sprint retrospective} e \textit{sprint planning} foram todos executados durante a mesma sessão para otimizar o tempo, visto que o projeto como versão piloto não necessitava de sessões específicas para cada evento.
+
+A responsabilidade central do autor no projeto foi a execução do desenvolvimento do aplicativo iOS. As atribuições delegadas ao autor foram: implementar e revisar o código do aplicativo iOS, integrar sistemas nos quais o aplicativo iOS está envolvido, participar em reuniões de planejamento e feedback de desenvolvimento do produto, contribuir com a modelagem de dados e arquitetura global do sistema, conduzir pesquisa e implementações de testes automatizados para o aplicativo.
+
 % ********
 % Cadastro
 % ********
@@ -76,7 +83,7 @@ Ao término do cadastro do estabelecimento, uma tela de boas vindas (Figura \ref
 % Cadastro Treinadores
 % ********************
 \subsection{Treinadores}
-Caso o usuário selecione a opção de cadastro de um treinador na tela de entrada, o mesmo é redirecionado para a tela de cadastro de informações gerais de usuário (Figura \ref{fig:register-trainer-info}), com os seguintes campos de dados: primeiro nome, último nome, e-mail, número do celular, senha (com campo de verificação). Caso as informações preenchidas sejam válidas, o cadastro prossegue para a próxima tela; caso contrário, alertas de erros são exibidos (como no caso do estabelecimento - Secção \ref{sec:register-gym})
+Caso o usuário selecione a opção de cadastro de um treinador na tela de entrada, o mesmo é redirecionado para a tela de cadastro de informações gerais de usuário (Figura \ref{fig:register-trainer-info}), com os seguintes campos de dados: primeiro nome, último nome, e-mail, número do celular, senha (com campo de verificação). Caso as informações preenchidas sejam válidas, o cadastro prossegue para a próxima tela; caso contrário, alertas de erros são exibidos (como no caso do estabelecimento - seção \ref{sec:register-gym})
 
 Após o preenchimento dos campos, uma requisição para registrar os dados na plataforma é feita para o back-end, o qual faz uma requisição ao serviço de envio de SMS com os dados do número do celular do usuário. Este serviço então envia um SMS com um código de verificação, que deve ser preenchido no campo "Verification Code" da tela de verificação por SMS (ver Figura \ref{fig:register-trainer-verification}). Nesta tela o usuário tem duas opções de ação: verificar o código preenchido (opção que dispara uma nova requisição ao back-end para identificar se o código fornecido é o mesmo gerado pelo serviço de SMS) ou reenviar o código de verificação (opção que desencadeia um novo envio de SMS para o usuário através de nova solicitação para tal ao serviço de SMS).
 
@@ -137,7 +144,7 @@ A configuração de perfil de treinador segue um fluxo de três telas (Figura \r
 % Interface academias
 % *******************
 \section{Interface para Academias}
-Nesta secção, é apresentada a interface para usuários que cadastraram um estabelecimento na plataforma. As principais funcionalidades implementadas para a versão piloto do aplicativo são abordadas: dashboard com dados semanais de uso da academia, calendário de sessões agendadas e configuração de agenda semanal para locação, perfil da academia.
+Nesta seção, é apresentada a interface para usuários que cadastraram um estabelecimento na plataforma. As principais funcionalidades implementadas para a versão piloto do aplicativo são abordadas: dashboard com dados semanais de uso da academia, calendário de sessões agendadas e configuração de agenda semanal para locação, perfil da academia.
 
 Na interface para as academias o usuário tem a opção de navegar por cinco telas principais, selecionadas a partir da barra de navegação na parte inferior do aplicativo (Figura \ref{fig:gym-tabbar}). Da esquerda para a direita, as opções de navegação são: dashboard da academia; treinadores com sessões agendadas (não implementado para o piloto); calendário de sessões agendadas; central de notificações (não implementado para o piloto); perfil do estabelecimento.
 
@@ -229,7 +236,7 @@ A tela de perfil da academia além de exibir todos os dados passados pelo usuár
 % Interface treinadores
 % *********************
 \section{Interface para Treinadores}
-Nesta secção, é apresentada a interface para usuários que se cadastram como treinadores. As principais funcionalidades implementadas para a versão piloto do aplicativo são abordadas: busca por academias, agendamento de sessões de treino, calendário de sessões agendadas e perfil de treinador.  
+Nesta seção, é apresentada a interface para usuários que se cadastram como treinadores. As principais funcionalidades implementadas para a versão piloto do aplicativo são abordadas: busca por academias, agendamento de sessões de treino, calendário de sessões agendadas e perfil de treinador.  
 
 Na interface para treinadores, o usuário tem a opção de navegar por cinco telas principais, selecionadas a partir da barra de navegação (Figura \ref{fig:tr-tabbar}) localizada na região inferior do aplicativo. Da esquerda para a direita, as opções da barra de navegação são: mapa de busca, academias favoritadas, acesso rápido à academias recentes, calendário de sessões agendadas e perfil de treinador.
 
@@ -241,7 +248,7 @@ Na interface para treinadores, o usuário tem a opção de navegar por cinco tel
 \end{figure}
 
 \subsection{Busca por Academias}
-O aplicativo permite que treinadores realizem buscas por academias através de três fluxos diferentes. Todos os três caminhos direcionam o usuário para a tela de visualização de perfil da academia (Figura \ref{fig:tr-gym-profile-view}) para treinadores. A partir desta tela o usuário pode realizar o agendamento de sessões de treino, abordado na próxima sub-secção.
+O aplicativo permite que treinadores realizem buscas por academias através de três fluxos diferentes. Todos os três caminhos direcionam o usuário para a tela de visualização de perfil da academia (Figura \ref{fig:tr-gym-profile-view}) para treinadores. A partir desta tela o usuário pode realizar o agendamento de sessões de treino, abordado na próxima sub-seção.
 
 \begin{figure}[H]
     \centering

@@ -12,10 +12,10 @@ Este capítulo tem como objetivo apresentar alguns conceitos utilizados como bas
 \textit{Agile} (desenvolvimento ágil de software ou métodos ágeis) é um termo que se refere a abordagem de desenvolvimento de software em que requisitos e soluções evoluem através de um esforço colaborativo de times auto-geridos e multi-funcionais, de sues clientes e usuários finais. O conceito prega planejamentos adaptativos, desenvolvimento iterativo com melhorias contínuas e encoraja a rápida e flexível resposta a mudanças. O conceito é frequentemente posto em prática com o uso de frameworks de desenvolvimento, como \textit{Scrum} e \textit{Kanban}. O termo foi popularizado através do manifesto ágil de desenvolvimento de software \cite{agile-manifet}, que tem como valores:
 
 \begin{itemize}
-    \item Indivíduos e iterações mais que processos e ferramentas
-    \item Software funcional mais que documentação abrangente
-    \item Colaboração do cliente mais que negociação de contratos
-    \item Responder a mudanças mais que seguir um plano
+    \item Indivíduos e iterações mais que processos e ferramentas;
+    \item Software funcional mais que documentação abrangente;
+    \item Colaboração do cliente mais que negociação de contratos;
+    \item Responder a mudanças mais que seguir um plano.
 \end{itemize}
 
 % *****
@@ -54,12 +54,10 @@ O \textit{Scrum} consiste em times com atribuições associadas, eventos e artef
     \end{itemize}
 \end{itemize}
 
-O projeto do Gyymi seguiu a seguinte estrutura de \textit{Scrum}: o \textit{product owner} e o \textit{scrum master} foram uma única pessoa, devido ao tamanho reduzido da equipe, não foi julgado necessário duas pessoas para tal atribuições. O time de desenvolvimento foi composto por um desenvolvedor back-end, um líder técnico iOS, um desenvolvedor iOS (função exercida pelo autor), um desenvolvedor Android e um designer. A \textit{sprint} teve durações de duas semanas, o \textit{daily scrum} foi executado todos os dias com duração máxima de quinze minutos e os eventos de \textit{sprint review}, \textit{sprint retrospective} e \textit{sprint planning} foram todos executados durante a mesma sessão para otimizar o tempo, visto que o projeto como versão piloto não necessitava de sessões específicas para cada evento.
-
 % *******************
 % Desenvolvimento iOS
 % *******************
-\section{Desenvolvimento de Aplicatiovos iOS}
+\section{Desenvolvimento de Aplicativos iOS}
 A seguir são apresentados os conceitos da arquitetura da plataforma, ambiente de desenvolvimento, linguagens de programação e gerenciamento de dependências, os quais permitem que programadores desenvolvam, instalem, executem e testem aplicativos em simuladores e dispositivos físicos.
 
 \subsection{Arquitetura da Plataforma}
@@ -69,9 +67,9 @@ outros sistemas operacionais da empresa, como o watchOS destinado ao Apple Watch
 O sistema operacional iOS gerencia o hardware do dispositivo e fornece as tecnologias necessárias para o desenvolvimento de aplicativos nativos. A arquitetura da plataforma consiste em quatro camadas de abstração (Figura \ref{fig:ios-architecture}). As camadas superiores, próximas ao nível da aplicação, são criadas a partir das camadas inferiores, as quais estão mais próximas ao nível do hardware. Elas exercem as seguintes funcionalidades:
 \begin{itemize}
     \item Cocoa Touch: é a camada de abstração mais acima da arquitetura. Contém frameworks essenciais que são base das aplicações nativas para iOS, sendo o mais utilizado o UIKit framework. Esta camada define a infraestrutura básica a nível de aplicação, provendo grande quantidade de tecnologias chave do sistema, como entradas de resposta ao toque.
-    \item Media: responsável pelo gerenciamento de mídias (gráficos, áudio e vídeo)
+    \item Media: responsável pelo gerenciamento de mídias (gráficos, áudio e vídeo).
     \item Core Services: responsável por gerencias os serviços fundamentais do sistema que as aplicações consomem. A camada Cocoa Touch depende diretamente da Core Service para algumas de suas funcionalidades. O framework básico desta camada é denominado Foundation.
-    \item Core OS: gerencia as funcionalidades de baixo nível do dispositivo, provendo frameworks que podem ser acessados pela aplicação..
+    \item Core OS: gerencia as funcionalidades de baixo nível do dispositivo, provendo frameworks que podem ser acessados pela aplicação.
 \end{itemize}
 
 \begin{figure}[h]
@@ -110,7 +108,7 @@ O Swift traz diversos benefícios em relação ao Objective-C, a qual é conside
     \caption{Logo do gerenciador de dependências CocoaPods}
     \label{fig:cocoapods}
 \end{figure}
-O uso de gerenciadores de dependências, para controlar a utilização de bibliotecas externas no projeto, é um padrão para o desenvolvimento iOS. Uma das ferramentas mais frequêntes em projetos é o CocoaPods (Figura \ref{fig:cocoapods}), com mais de $53$ mil bibliotecas disponíveis e mais de $3$ milhões de aplicativos utilizando a ferramenta \cite{cocoapods}.
+O uso de gerenciadores de dependências, para controlar a utilização de bibliotecas externas no projeto, é um padrão para o desenvolvimento iOS. Uma das ferramentas mais frequentes em projetos é o CocoaPods (Figura \ref{fig:cocoapods}), com mais de $53$ mil bibliotecas disponíveis e mais de $3$ milhões de aplicativos utilizando a ferramenta \cite{cocoapods}.
 
 % ***********
 % RESTful API
@@ -123,7 +121,7 @@ RESTful APIs foram projetadas para se beneficiar de protocolos existentes, utili
     \item Cliente e servidor devem estar separados e podem evoluir individualmente.
     \item Não armazenam estado, significando que todas as chamadas da API operam independentemente. Cada uma delas contém todos os dados necessários para serem completadas.
     \item Devido ao fator de não armazenar estado, RESTful API's são projetadas para utilizar sistemas de armazenamento em cache
-    \item Possuem diferentes camadas operando em conjunto para a construção de uma hierarquia que auxilia a criação de aplicações mais escaláveis e modulaes.
+    \item Possuem diferentes camadas operando em conjunto para a construção de uma hierarquia que auxilia a criação de aplicações mais escaláveis e modulares.
     \item Não está restrita a um tipo de formato de transmissão de dados (pode transferir dados em diferentes formatos como XML e JSON). E usuários não necessitam conhecer nomes de procedimentos ou parâmetros em uma ordem específica.
 \end{itemize}
 
