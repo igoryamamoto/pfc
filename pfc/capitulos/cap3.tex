@@ -9,7 +9,7 @@ Este capítulo tem como objetivo apresentar alguns conceitos utilizados como bas
 % Agile
 % *****
 \subsection{Agile}
-\textit{Agile} (desenvolvimento ágil de software ou métodos ágeis) é um termo que se refere a abordagem de desenvolvimento de software em que requisitos e soluções evoluem através de um esforço colaborativo de times auto-geridos e multi-funcionais, de sues clientes e usuários finais. O conceito prega planejamentos adaptativos, desenvolvimento iterativo com melhorias contínuas e encoraja a rápida e flexível resposta a mudanças. O conceito é frequentemente posto em prática com o uso de frameworks de desenvolvimento, como \textit{Scrum} e \textit{Kanban}. O termo foi popularizado através do manifesto ágil de desenvolvimento de software \cite{agile-manifet}, que tem como valores:
+\textit{Agile} (desenvolvimento ágil de software ou métodos ágeis) é um termo que se refere a abordagem de desenvolvimento de software em que requisitos e soluções evoluem através de um esforço colaborativo de times auto-geridos e multi-funcionais, de sues clientes e usuários finais \cite{agile-definition}. O conceito prega planejamentos adaptativos, desenvolvimento iterativo com melhorias contínuas e encoraja a rápida e flexível resposta a mudanças. O conceito é frequentemente posto em prática com o uso de frameworks de desenvolvimento, como \textit{Scrum} e \textit{Kanban}. O termo foi popularizado através do manifesto ágil de desenvolvimento de software \cite{agile-manifet}, que tem como valores:
 
 \begin{itemize}
     \item Indivíduos e iterações mais que processos e ferramentas;
@@ -61,8 +61,8 @@ O \textit{Scrum} consiste em times com atribuições associadas, eventos e artef
 A seguir são apresentados os conceitos da arquitetura da plataforma, ambiente de desenvolvimento, linguagens de programação e gerenciamento de dependências, os quais permitem que programadores desenvolvam, instalem, executem e testem aplicativos em simuladores e dispositivos físicos.
 
 \subsection{Arquitetura da Plataforma}
-O sistema operacional iOS foi criado e é desenvolvido pela Apple Inc. com o intuito de dar suporte aos dispositivos móveis da empresa (iPhone, iPod Touch e iPad). O sistema ainda originou
-outros sistemas operacionais da empresa, como o watchOS destinado ao Apple Watch, e ao tvOS, destinado à Apple TV. 
+O sistema operacional iOS \cite{ios-system} foi criado e é desenvolvido pela Apple Inc. com o intuito de dar suporte aos dispositivos móveis da empresa (iPhone, iPod Touch e iPad). O sistema ainda originou
+outros sistemas operacionais da empresa, como o watchOS \cite{watchos} destinado ao Apple Watch, e ao tvOS \cite{tvos}, destinado à Apple TV. 
 
 O sistema operacional iOS gerencia o hardware do dispositivo e fornece as tecnologias necessárias para o desenvolvimento de aplicativos nativos. A arquitetura da plataforma consiste em quatro camadas de abstração (Figura \ref{fig:ios-architecture}). As camadas superiores, próximas ao nível da aplicação, são criadas a partir das camadas inferiores, as quais estão mais próximas ao nível do hardware. Elas exercem as seguintes funcionalidades:
 \begin{itemize}
@@ -80,7 +80,7 @@ O sistema operacional iOS gerencia o hardware do dispositivo e fornece as tecnol
 \end{figure}
 
 \subsection{Ambiente de Desenvolvimento Xcode}
-O Xcode é o ambiente de desenvolvimento integrado (IDE) da Apple. A ferramenta possui um editor de texto integrado, uma ferramenta de construção de interfaces (\textit{interface builder}) e outras funcionalidades que dão suporte ao desenvolvimento de aplicativos para os sistemas iOS, macOS, watchOS e tvOS. O Xcode possui o SDK iOS integrado, o qual permite a compilação, a simulação de dispositivos, entre outros recursos.
+O Xcode é o ambiente de desenvolvimento integrado (IDE) da Apple \cite{xcode}. A ferramenta possui um editor de texto integrado, uma ferramenta de construção de interfaces (\textit{interface builder}) e outras funcionalidades que dão suporte ao desenvolvimento de aplicativos para os sistemas iOS, macOS, watchOS e tvOS. O Xcode possui o SDK iOS integrado, o qual permite a compilação, a simulação de dispositivos, entre outros recursos.
 
 A Figura \ref{fig:xcode} ilustra a interface gráfica da IDE.
 \begin{figure}[h]
